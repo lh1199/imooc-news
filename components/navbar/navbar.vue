@@ -4,7 +4,7 @@
 			<!-- 状态栏 -->
 			<view :style="{height: statusBarHeight + 'px'}"></view>
 			<!-- 导航栏内容 -->
-			<view class="navbar-content" :style="{height: navBarHeight + 'px', width: windowWidth + 'px'}">
+			<view class="navbar-content" :style="{height: navBarHeight + 3 + 'px', width: windowWidth + 'px'}">
 				<view class="navbar-search">
 					<view class="navbar-search_icon">
 						<uni-icons type="search" size="16" color="#999"></uni-icons>

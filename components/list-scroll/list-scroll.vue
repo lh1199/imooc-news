@@ -1,8 +1,8 @@
 <template>
 	<view class="scroll">
-		<scroll-view scroll-y="true" class="list-scroll">
+		<scroll-view class="list-scroll" scroll-y>
 			<view>
-				<view v-for="item in 100">{{item}}</view>
+				<slot></slot>
 			</view>
 		</scroll-view>
 	</view>
@@ -12,18 +12,22 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
+		},
+		methods:{
+			
 		}
 	}
 </script>
 
 <style lang="scss">
-	.scroll{
+	.scroll {
 		flex: 1;
-		box-sizing: border-box;
+		height: 100%;
 		overflow: hidden;
-		.list-scroll{
+		box-sizing: border-box;
+		.list-scroll {
 			height: 100%;
 			display: flex;
 			flex-direction: column;

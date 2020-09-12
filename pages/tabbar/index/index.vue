@@ -1,8 +1,11 @@
 <template>
 	<view class="home">
+		<!-- 自定义导航 -->
 		<navbar></navbar>
 		<tab :list="tabList" @tab="tab"></tab>
-		<list-card v-for="item in 5"></list-card>
+		<view class="home-list">
+			<list :tab="tabList"></list>
+		</view>
 	</view>
 </template>
 
@@ -43,5 +46,9 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: hidden;
+		.home-list{
+			flex: 1;
+			box-sizing: border-box;
+		}
 	}
 </style>
