@@ -2,9 +2,9 @@
 	<view class="home">
 		<!-- 自定义导航 -->
 		<navbar></navbar>
-		<tab :list="tabList" @tab="tab"></tab>
+		<tab :list="tabList" :tableIndex="tableIndex" @tab="tab"></tab>
 		<view class="home-list">
-			<list :tab="tabList"></list>
+			<list :tab="tabList" :activeIndex="activeIndex" @change="change"></list>
 		</view>
 	</view>
 </template>
@@ -13,13 +13,18 @@
 	export default {
 		data() {
 			return {
-				tabList: []
+				tabList: [],
+				tableIndex: 0,
+				activeIndex: 0
 			}
 		},
 		onLoad() {
 			this.getLabel()
 		},
 		methods: {
+			change(current) {
+				this.tableIndex = current
+			},
 			getLabel() {
 				// 调用云函数方法
 				this.$api.get_label({
@@ -30,7 +35,7 @@
 				})
 			},
 			tab(data, index) {
-				
+				this.activeIndex = data.index
 			}
 		}
 	}
