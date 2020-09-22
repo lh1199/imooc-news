@@ -24,6 +24,7 @@
 		methods: {
 			change(current) {
 				this.tableIndex = current
+				this.activeIndex = current
 			},
 			getLabel() {
 				// 调用云函数方法
@@ -31,6 +32,9 @@
 					name: 'get_label'
 				}).then(res => {
 					const {data} = res
+					data.unshift({
+						name: '全部'
+					})
 					this.tabList = data
 				})
 			},

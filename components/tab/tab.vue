@@ -19,16 +19,6 @@
 				default() {
 					return []
 				}
-			},
-			tableIndex: {
-				type: Number,
-				default: 0
-			}
-		},
-		// 可以监听 data props 值的变化
-		watch: {
-			tableIndex(newVal) {
-				this.activeIndex = newVal
 			}
 		},
 		data() {
