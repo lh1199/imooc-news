@@ -55,7 +55,7 @@
 				if (!this.listCatchData[current] || this.listCatchData[current].length === 0) {
 					this.getList(current)
 				}
-				this.getList(current)
+				// this.getList(current)
 			},
 			getList(current) {
 				if (!this.load[current]) {
