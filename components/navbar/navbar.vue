@@ -101,8 +101,7 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					// padding: 0 15px;
-					padding-right: 15px;
+					padding: 0 15px;
 					height: 45px;
 					box-sizing: border-box;
 	
