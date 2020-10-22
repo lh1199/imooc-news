@@ -22,8 +22,8 @@
 			</view>
 			<view class="detail-comment">
 				<view class="comment-title">最新评论</view>
-				<view class="comment-content">
-					<comments-box></comments-box>
+				<view class="comment-content" v-for="item in commentsList" :key="item.comment_id">
+					<comments-box :comments="item" @replay="replay"></comments-box>
 				</view>
 			</view>
 		</view>
@@ -70,12 +70,15 @@
 				formData: {},
 				noData: '<p style="text-align: center; color: #666;">详情加载中...</p>',
 				// 输入框的值
-				commentValue: ''
+				commentValue: '',
+				commentsList: [],
+				replayFormData: {}
 			}
 		},
 		onLoad(query) {
 			this.formData = JSON.parse(query.params)
 			this.getDetail()
+			this.getComments()
 		},
 		methods: {
 			// 打开评论发布窗口
@@ -92,19 +95,27 @@
 						icon: 'none'
 					})
 				}
-				this.setUpdateComment(this.commentValue)
+				this.setUpdateComment({content: this.commentValue, ...this.replayFormData})
+			},
+			replay(e) {
+				this.replayFormData = {
+					"comment_id": e.comment_id
+				}
+				this.openComment()
 			},
 			setUpdateComment(content) {
-				uni.showLoading()
-				this.$api.update_comment({
+				const formdata = {
 					article_id: this.formData._id,
-					content
-				}).then(res => {
+					...content
+				}
+				uni.showLoading()
+				this.$api.update_comment(formdata).then(res => {
 					console.log(res)
 					uni.hideLoading()
 					uni.showToast({
 						title: '评论成功'
 					})
+					this.getComments()
 					this.close()
 				})
 			},
@@ -116,6 +127,15 @@
 					const { data } = res
 					this.formData = data
 					console.log(res)
+				})
+			},
+			// 请求评论内容
+			getComments() {
+				this.$api.get_comments({
+					article_id: this.formData._id
+				}).then(res => {
+					const {data} = res
+					this.commentsList = data
 				})
 			}
 		}
