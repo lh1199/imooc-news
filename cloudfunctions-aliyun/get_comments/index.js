@@ -22,9 +22,10 @@ exports.main = async (event, context) => {
 		.replaceRoot({
 			newRoot: '$comments'
 		})
+		// 要跳过多少数据
 		.skip(pageSize*(page-1))
 		.limit(pageSize)
-		.end()
+		.end() 
 	//返回数据给客户端
 	return {
 		code: 200,

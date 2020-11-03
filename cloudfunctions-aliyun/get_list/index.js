@@ -28,6 +28,7 @@ exports.main = async (event, context) => {
 		.addFields({
 			is_like:$.in(['$_id',article_likes_ids])
 		})
+		
 		.match(matchObj)
 		.project({
 			content: 0
